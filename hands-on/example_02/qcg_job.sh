@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
-#SBATCH --time=00:05:00
+#SBATCH --time=01:00:00
 #SBATCH --partition=rome
 module load 2022
 module load QCG-PilotJob/0.13.1-foss-2022a
