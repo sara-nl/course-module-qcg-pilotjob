@@ -3,13 +3,12 @@ Guide for the hands-on exercises
 
 ## Structure of QCG pilot jobs on Snellius
 QCGPilot jobs on Snellius require 3 sets of files.
-    1. **Slurm job Script** &rarr; Loads the QCG environment and runs the QCG
-       python script.
-    2. **QCG python script** &rarr; Invokes job manager that aggregates all
-       your jobs along with resources, conditions based on which jobs need to
-       be invoked.
-    3. **Executable** &rarr; This is the main application that one wants to
-       invoke.
+1. **Slurm job Script** &rarr; Loads the QCG environment and runs the QCG
+   python script.
+2. **QCG python script** &rarr; Invokes job manager that aggregates all your
+   jobs along with resources, conditions based on which jobs need to be
+   invoked.
+3. **Executable** &rarr; This is the main application that one wants to invoke.
 
 Flow of invoking: *Slurm job Script*&rarr;*QCG python script*&rarr;*Executable*
 
