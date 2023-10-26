@@ -19,4 +19,4 @@ tar -xvf input.tar.gz
 sbatch qcg_job.sh
 ```
 
-3. Observe result in result director
+3. Observe result in result directory.
