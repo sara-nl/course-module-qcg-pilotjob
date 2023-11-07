@@ -6,13 +6,13 @@ from qcg.pilotjob.api.manager import LocalManager
 
 job_names = []
 
-# scan input directory for csv files
+# scan input directory for CVS files
 for filename in glob(os.path.join("input/*.csv"), recursive = False):
-    # determine job name  and append to list
+    # determine the job name and append it to the list
     job_names.append(os.path.basename(filename))
 
-# create QCG manager
-manager = LocalManager() 
+# create the QCG manager
+manager = LocalManager()
 jobs = Jobs()
 
 
@@ -35,10 +35,10 @@ jobs.add(name="aggregate",
          stderr='aggregate.err',
          after=job_names)
 
-print("submit jobs")
+print("-- submit jobs")
 manager.submit(jobs)
-print("wait for all jobs")
+print("-- wait for all jobs")
 manager.wait4all()
-print("done")
+print("-- done")
 manager.finish()
-print("finished")
+print("-- finished")

@@ -17,7 +17,7 @@ python3 qcg_job.py
 mkdir -p $SLURM_SUBMIT_DIR/results
 cp result.csv  $SLURM_SUBMIT_DIR/results/
 
-# archive the logdata for reference
+# archive the logdata for the reference
 tar -c --exclude="input" --exclude="result" . > $SLURM_SUBMIT_DIR/results/log.${SLURM_JOB_ID}.tar
 gzip $SLURM_SUBMIT_DIR/results/log.${SLURM_JOB_ID}.tar
 

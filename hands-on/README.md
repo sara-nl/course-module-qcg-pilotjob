@@ -1,41 +1,38 @@
-# Hands-on QCG Pilotjob
+# Hands-on QCG-PilotJob
 Guide for the hands-on exercises
 
-## Structure of QCG pilot jobs on Snellius
-QCGPilot jobs on Snellius require 3 sets of files.
-1. **Slurm job Script** &rarr; Loads the QCG environment and runs the QCG
-   python script.
-2. **QCG python script** &rarr; Invokes job manager that aggregates all your
-   jobs along with resources, conditions based on which jobs need to be
-   invoked.
-3. **Executable** &rarr; This is the main application that one wants to invoke.
+## Structure of QCG-PilotJob on Snellius
+QCG-PilotJob on Snellius requires 3 files:
+1. **Slurm job script** - loads the module environment and runs the QCG-PilotJob python script.
 
-Flow of invoking: *Slurm job Script*&rarr;*QCG python script*&rarr;*Executable*
+2. **QCG-PilotJob python script** - invokes the job manager that aggregates all jobs 
+along with the resources and conditions defined by the user.
 
-This is the order in which the executable ultimately gets invoked.
+3. **Executable** - this is the main application or script that the user wants to invoke.
 
-The job script allocates the total resources that you want to allocate for your
-job. This also loads the QCGPilot module and other modules required within the
-node. Please note that within Snellius the environment in the login nodes does
-not get transferred by defaultto the allocated compute nodes. You will have to
-load the modules again within the Slurm job script. The job script also moves
-the necessary files needed for the execution from the home file system to the
-scratch file system and once the calculations are complete, copies the relevant
-files back to the submit directory. This is also very essential since, your
-home filesystem is only meant for storage, the I/O on the compute nodes need to
-occur within the scratch file system which is a part of the GPFS (General
-Parallel File System).
+The flow of invoking: *Slurm job Script*&rarr;*QCG-PilotJob python script*&rarr;*Executable*
 
-QCG python script invokes a job manager within the Slurm allocation. This
-manager manages your multiple small jobs based on the resources provided to it.
-This script mainly assimilates the different jobs along with different
-parameters that you need to provide for the embarrassingly parallel
-workflow. Parameters can be different input arguments that you provide to the
-same end application executable. Each job will produce its, own output and
-error file and can also include its own unique modules that are extra on top of
-general modules that are already loaded.
+## Description
+Below is the description of the order in which the main **Executable** ultimately gets invoked.
 
-The status of each job can be found in the file named
-*nl-agent-{hostname}.log*. For more detailed diagnostics and explanation
-regarding each job and also the available logs please refer to the
-[documentation](https://qcg-pilotjob.readthedocs.io/en/develop/logs.html).
+1. The Slurm job script allocates the resources that the user wants to have for a job. In the same
+Slurm script, the user lists the modules that are required for running the **Executable** file and
+loads the QCG-PilotJob module. The job script also moves the necessary files needed for the execution
+from the home space to the scratch space and once the calculations are complete, copies the relevant
+files back to the submittion directory. This is essential because the home space is only meant for storage 
+of small files, e.g. source code, input files, pre- post-processing scripts, and should not be used for 
+intense I/O operations. The I/O on the compute nodes needs to occur within the scratch space that uses 
+GPFS (General Parallel File System).
+
+*Please note that within Snellius the environment in the login nodes does not get transferred by default to the allocated compute nodes. Users must load the modules within the Slurm job script.*
+
+2. QCG-PilotJob python script invokes a job manager within the Slurm allocation. This manager runs and 
+manages multiple (small) jobs based on the resources provided to it. This script mainly assimilates the 
+different jobs along with different parameters that a user needs to provide for the embarrassingly parallel 
+workflow. Parameters can represent different input arguments that are provided to the same executable. 
+Each run will produce its own output and error file. It's also possible to specify a loading of additional 
+modules per run.
+
+   The status of each job can be found in the file named *nl-agent-{hostname}.log*. For more detailed 
+   diagnostics and explanation regarding each job and also the available logs please refer to the 
+   [documentation](https://qcg-pilotjob.readthedocs.io/en/develop/logs.html).
