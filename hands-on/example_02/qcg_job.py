@@ -1,6 +1,5 @@
 from glob import glob
 import os
-import sys
 from qcg.pilotjob.api.job import Jobs
 from qcg.pilotjob.api.manager import LocalManager
 

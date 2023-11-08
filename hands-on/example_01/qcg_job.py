@@ -1,7 +1,6 @@
 from qcg.pilotjob.api.job import Jobs
 from qcg.pilotjob.api.manager import LocalManager
 
-
 # create QCG manager
 manager = LocalManager() 
 jobs = Jobs()
