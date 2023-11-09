@@ -3,7 +3,7 @@ Guide for the hands-on exercises
 
 ## Structure of QCG-PilotJob on Snellius
 QCG-PilotJob on Snellius requires 3 files:
-1. **Slurm job script** - loads the module environment and runs the QCG-PilotJob python script.
+1. **Slurm job script** - defines resources, loads the module environment and runs the QCG-PilotJob python script.
 
 2. **QCG-PilotJob python script** - invokes the job manager that aggregates all jobs 
 along with the resources and conditions defined by the user.
