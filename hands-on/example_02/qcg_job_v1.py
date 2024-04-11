@@ -18,20 +18,21 @@ jobs = Jobs()
 for jname in job_names:
     print("submit {}".format(jname))
     jobs.add(name=jname,
-                  exec='python3',
-                  args=["average.py", os.path.join("input", jname)],
-                  stdout='average_{}'.format(jname),
-                  stderr='job.{}.err'.format(jname),
-                  modules=["2023", "Python/3.11.3-GCCcore-12.3.0"],
-                  iteration=1
-                  )
+             exec='python3',
+             args=["average.py", os.path.join("input", jname)],
+             stdout='average_{}'.format(jname),
+             stderr='job.{}.err'.format(jname),
+             modules=["2023", "Python/3.11.3-GCCcore-12.3.0"],
+             iteration=1
+            )
 
 # add a job for the aggregation of the results
 jobs.add(name="aggregate",
          script='cat average_*.csv | sort',
          stdout='result.csv',
          stderr='aggregate.err',
-         after=job_names)
+         after=job_names
+        )
 
 print("-- submit jobs")
 manager.submit(jobs)

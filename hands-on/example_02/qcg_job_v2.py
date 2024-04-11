@@ -25,7 +25,7 @@ for jname in job_names:
                   stderr='job.{}.err'.format(jname),
                   modules=["2023", "Python/3.11.3-GCCcore-12.3.0"],
                   iteration=1
-                  )
+                 )
 
 print("-- submit computational jobs")
 job_comp_ids = manager.submit(jobs_comp)
@@ -37,10 +37,11 @@ manager.wait4(job_comp_ids)
 
 # set up a job for the aggregation of the results
 jobs_agg.add(name="aggregate",
-         script='cat average_*.csv | sort',
-         stdout='result.csv',
-         stderr='aggregate.err',
-         after=job_names)
+             script='cat average_*.csv | sort',
+             stdout='result.csv',
+             stderr='aggregate.err',
+             after=job_names
+            )
 
 print("-- submit the post-processing job")
 job_agg_ids = manager.submit(jobs_agg)
