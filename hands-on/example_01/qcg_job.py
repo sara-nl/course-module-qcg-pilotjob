@@ -1,13 +1,13 @@
 from qcg.pilotjob.api.job import Jobs
 from qcg.pilotjob.api.manager import LocalManager
 
-# create QCG manager
+# create the QCG manager and the Jobs object
 manager = LocalManager() 
 jobs = Jobs()
 
 # create 512 independent jobs
 for job in range(512):
-    # define job specification
+    # define a job
     jobs.add(name="job_{}".format(job),
              exec='hostname',
              stdout='output/job.{}.out'.format(job),

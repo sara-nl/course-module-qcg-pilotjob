@@ -35,7 +35,7 @@ print("-- wait for all computational jobs")
 # or, use jobs IDs:
 manager.wait4(job_comp_ids)
 
-# set up a job for the aggregation of results
+# set up a job for the aggregation of the results
 jobs_agg.add(name="aggregate",
          script='cat average_*.csv | sort',
          stdout='result.csv',

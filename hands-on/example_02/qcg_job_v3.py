@@ -31,7 +31,7 @@ job_ids = manager.submit(jobs)
 print("-- wait for all computational jobs")
 manager.wait4all()
 
-# set up a job for the aggregation of results
+# set up a job for the aggregation of the results
 jobs.clear()
 jobs.add(name="aggregate",
          script='cat average_*.csv | sort',

@@ -42,7 +42,7 @@ print("-- all computations finished = ", all_comp_finished)
 
 # execute the aggregate job if all computations finished successfully
 if(all_comp_finished):
-    # set up a job for the aggregation of results
+    # set up a job for the aggregation of the results
     jobs_1.add(name="aggregate",
                script='cat average_*.csv | sort',
                stdout='result.csv',

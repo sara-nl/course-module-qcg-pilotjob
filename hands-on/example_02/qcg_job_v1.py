@@ -26,7 +26,7 @@ for jname in job_names:
                   iteration=1
                   )
 
-# add a job for the aggregation of results
+# add a job for the aggregation of the results
 jobs.add(name="aggregate",
          script='cat average_*.csv | sort',
          stdout='result.csv',
