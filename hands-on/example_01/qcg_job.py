@@ -16,9 +16,9 @@ for job in range(512):
              numCores={ "exact" : 1},
              iteration=1)
 
-print("-- submit jobs --")
+print("-- submit jobs")
 manager.submit(jobs)
-print("-- wait for all jobs --")
+print("-- wait for all jobs")
 manager.wait4all()
 manager.finish()
 print("-- finished")
