@@ -13,6 +13,7 @@ for filename in glob(os.path.join("input/*.csv"), recursive = False):
 # create the QCG manager
 manager = LocalManager()
 jobs = Jobs()
+jobs_1 = Jobs()
 
 
 for jname in job_names:
@@ -27,17 +28,34 @@ for jname in job_names:
              iteration=1
              )
 
-# aggregate results in one CSV file
-jobs.add(name="aggregate",
-         script='cat average_*.csv | sort',
-         stdout='result.csv',
-         stderr='aggregate.err',
-         after=job_names)
+print("submit jobs")
+job_ids = manager.submit(jobs)
+print("wait for all jobs")
+manager.wait4(job_ids)
+job_status = manager.status(job_ids)
+print("Job status ")
+all_comp_finished = (all([job_status.get('jobs').get(x).get('data').get('status')=='SUCCEED'
+                          for x in job_ids]) and
+                     any([job_status.get('jobs').get(x).get('data').get('status')=='SUCCEED'
+                          for x in job_ids]))
 
-print("-- submit jobs")
-manager.submit(jobs)
-print("-- wait for all jobs")
+print("All computations finished = ", all_comp_finished)
+
+# Execute the aggregate job if all computations finished correctly.
+if(all_comp_finished):
+    # aggregate results in one CSV file
+    jobs_1.add(name="aggregate",
+               script='cat average_*.csv | sort',
+               stdout='result.csv',
+               stderr='aggregate.err',
+               after=job_names)
+    print("submit jobs aggregate")
+    manager.submit(jobs_1)
+else:
+    print("Not all jobs have finished correctly, therefore aggregate will not be calculated.")
+
+print("wait for all jobs")
 manager.wait4all()
-print("-- done")
+print("done")
 manager.finish()
-print("-- finished")
+print("finished")
