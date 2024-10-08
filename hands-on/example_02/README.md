@@ -17,7 +17,7 @@ sbatch qcg_job.sh
 
 4. Look at the `qcg_job_v1.py` file. Can you spot a problem?
 
-5. Compare `qcg_job_v1.py` to `qcg_job_v2.py` and `qcg_job_v3.py`
+5. Compare `qcg_job_v0.py` to `qcg_job_v1.py`, `qcg_job_v2.py` and `qcg_job_v3.py`
 
 
 ## Data source
