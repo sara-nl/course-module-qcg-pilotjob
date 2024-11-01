@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p rome
+#SBATCH -t 10
+#SBATCH --array 0-999%10
+
+module load 2023
+module load Python/3.11.3-GCCcore-12.3.0
+
+# copy input data and scripts to working directory
+cp -r $SLURM_SUBMIT_DIR/input_mod $TMPDIR/
+cp -r $SLURM_SUBMIT_DIR/average.py $TMPDIR/
+cp -r $SLURM_SUBMIT_DIR/average.py $TMPDIR/
+cd $TMPDIR
+echo "TMPDIR = $TMPDIR"
+
+# average data
+input_file_path=input_mod/${SLURM_ARRAY_TASK_ID}_*
+echo "Analyzing file: $input_file_path"
+python3 average.py $input_file_path
+
+# copy result back to submission directory
+#mkdir -p $SLURM_SUBMIT_DIR/results
+#cp result.csv  $SLURM_SUBMIT_DIR/results/results_${SLURM_ARRAY_TASK_ID}.csv
+
+# archive the logdata for the reference
+#tar -c --exclude="input" --exclude="result" . > $SLURM_SUBMIT_DIR/results/log.${SLURM_JOB_ID}.tar
+#gzip $SLURM_SUBMIT_DIR/results/log.${SLURM_JOB_ID}.tar

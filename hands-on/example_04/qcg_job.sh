@@ -7,13 +7,15 @@
 module load 2023
 module load QCG-PilotJob/0.14.1-gfbf-2023a
 
+echo $TMPDIR
+
 # copy input data and scripts to working directory
 cp -r $SLURM_SUBMIT_DIR/. $TMPDIR/
 cd $TMPDIR
 
 # execute jobs
-python3 qcg_job_v0.py
-# python3 qcg_job_v1.py
+# python3 qcg_job_v0.py
+python3 qcg_job_v1.py
 # python3 qcg_job_v2.py
 # python3 qcg_job_v3.py
 # python3 qcg_job_v4.py
