@@ -1,4 +1,5 @@
 *.log
 *.out
-.qcgpjm-service*
-*.hostfile
+*.csv
+input
+input_mod
