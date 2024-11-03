@@ -3,7 +3,7 @@
 #SBATCH -n 1
 #SBATCH -p rome
 #SBATCH -t 10
-#SBATCH --array 4-11%3
+#SBATCH --array 0-11%3
 
 echo "Running on "
 hostname
