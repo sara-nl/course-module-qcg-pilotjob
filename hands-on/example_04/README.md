@@ -13,7 +13,7 @@ tar -xvf input.tar.gz
 sbatch qcg_job.sh
 ```
 
-3. Observe result in the `result` directory.
+3. Observe the results in the `results` directory.
 
 4. Look at the `qcg_job_v1.py` file. Can you spot a problem?
 
