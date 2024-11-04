@@ -11,7 +11,6 @@ module load Python/3.11.3-GCCcore-12.3.0
 # copy input data and scripts to working directory
 cp -r $SLURM_SUBMIT_DIR/input_mod $TMPDIR/
 cp -r $SLURM_SUBMIT_DIR/average.py $TMPDIR/
-cp -r $SLURM_SUBMIT_DIR/average.py $TMPDIR/
 cd $TMPDIR
 echo "TMPDIR = $TMPDIR"
 
